@@ -1,4 +1,5 @@
 # CodeChangeMonitor  
+Sorry that noob code [![CodeFactor](https://www.codefactor.io/repository/github/moshuid/codechangemonitor/badge)](https://www.codefactor.io/repository/github/moshuid/codechangemonitor)
 # Why I build it  
 This project is a tool for me that to help me find which code are changed in malice process.  
 # Tips  
