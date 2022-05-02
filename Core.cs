@@ -51,7 +51,7 @@ namespace CodeChangeMonitor
                 int firstSectionsOffset = FileHeaderOffset + 0x14/*2 2 4 4 4 2 2 = 20 = 0x14*/+ 0xF0/*Optional Header size*/;
                 for (int i = 0; i < numberOfSections; i++)
                 {
-                    retInfo[i].sectionName = Encoding.ASCII.GetString(buffer, firstSectionsOffset + i * 0x28, 8).TrimEnd('\0');
+                    retInfo[i].sectionName = Encoding.ASCII.GetString(buffer, firstSectionsOffset + (i * 0x28), 8).TrimEnd('\0');
                     retInfo[i].sectionSize = BitConverter.ToUInt32(buffer, firstSectionsOffset + (i * 0x28) + 0x8);//VirtualSize 4bytes
                     retInfo[i].RVirtualAddress = BitConverter.ToUInt32(buffer, firstSectionsOffset + (i * 0x28) + 0xC);//VirtualAddress 4bytes
                     UInt32 tempCharacteristics = BitConverter.ToUInt32(buffer, firstSectionsOffset + (i * 0x28) + 0x24);//Characteristics
@@ -116,16 +116,13 @@ namespace CodeChangeMonitor
                     fs.Write(buffer, 0, buffer.Length);
                     fs.Flush();
                 }
-
             }
-
         }
         public static CodeInfo[] GetChange(Process p, SectionInfo[] sectionInfos)
         {
             List<CodeInfo> retInfo = new List<CodeInfo>();
             using (FileStream fs = new FileStream(Application.StartupPath + "\\org.file", FileMode.Open))
             {
-
                 foreach (SectionInfo info in sectionInfos)
                 {
                     byte[] buffer = new byte[info.sectionSize];
@@ -143,7 +140,6 @@ namespace CodeChangeMonitor
                         }
                     }
                 }
-
             }
             return retInfo.ToArray();
         }
