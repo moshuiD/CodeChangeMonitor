@@ -29,7 +29,6 @@ namespace CodeChangeMonitor
                     checkSectionsBox.Items.Add(item.sectionName);
                     showSectionInfos.Add(item);
                 }
-
             }
             logBox.Text += "在选择框中选中来查看节段信息\r\n";
         }
@@ -53,7 +52,6 @@ namespace CodeChangeMonitor
                 Core.GetOrgBytes(Process.GetProcessesByName(textBox1.Text)[0], showSectionInfos.ToArray());
                 logBox.BeginInvoke(new Action(() => { logBox.Text += "创建成功!\r\n"; }));
             });
-
         }
 
         private void button3_Click(object sender, EventArgs e)
